@@ -1,7 +1,9 @@
+// Starter
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = '!';
 
+// Intialize
 client.on("ready", function(){
   console.log(client.user.username);
   client.user.setPresence({
@@ -13,6 +15,16 @@ client.on("ready", function(){
   })
 });
 
+const teachAssistAPI = {
+  url: 'https://api.pegasis.site/public/yrdsb_ta/getmark_v2',
+  type: 'teachassist',
+  id: 100,
+}
+
+const apiURL = `${apiData.url}${apiData.type}/${apiData.id}`;
+console.log(apiURL)
+
+// Function
 client.on("message", (message) =>{
 
   if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -42,8 +54,10 @@ client.on("message", (message) =>{
 
   if(command == "debug") {
     message.channel.send('debug coming soon');
+    message.channel.send(apiURL);
   }
   
 });
 
+// Load
 client.login(process.env.token);
