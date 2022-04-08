@@ -58,20 +58,15 @@ client.on("message", (message) =>{
     } else {
       message.channel.send("City entered: " + args[1]);
 
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${args}&units=imperial&appid=${process.env.weathertoken}`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${args}&units=metric&appid=${process.env.weathertoken}`;
 
-      let response; let
-        city;
-  
       try {
-        response = await axios.get(url);
-        city = response.data;
-        console.log(city);
-      } catch (e) {
-        return message.channel.send('Couldn\'t find that city');
+        const response = await axios.get(url);
+        const city = response.data;
+        message.channel.send(city);
       }
   
-      const embed = new MessageEmbed()
+      const embed = new Discord.MessageEmbed()
         .setTitle(`Weather in: ${city.name}`)
         .setThumbnail(`http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`)
         .setDescription(city.weather[0].description)
@@ -91,29 +86,15 @@ client.on("message", (message) =>{
             inline: true,
           },
           {
-            name: 'Highest: ',
-            value: `${city.main.temp_max} °F`,
-            inline: true,
-          },
           {
-            name: 'Lowest: ',
-            value: `${city.main.temp_min} °F`,
-            inline: true,
-          },
-          {
-            name: 'Sunrise: ',
-            value: city.sys.sunrise,
-            inline: true,
-          },
-          {
-            name: 'Sunrise: ',
+            name: 'Sunset: ',
             value: city.sys.sunset,
             inline: true,
           },
         );
   
-      return message.channel.send(embed);
-      
+      message.channel.send(embed);
+
     }
   }
   
