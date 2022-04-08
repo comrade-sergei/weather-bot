@@ -66,7 +66,7 @@ client.on("message", (message) =>{
         message.channel.send(city);
       }
   
-      const embed = new Discord.MessageEmbed()
+      const weatherEmbed = new Discord.MessageEmbed()
         .setTitle(`Weather in: ${city.name}`)
         .setThumbnail(`http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`)
         .setDescription(city.weather[0].description)
@@ -86,11 +86,10 @@ client.on("message", (message) =>{
             inline: true,
           },
           {
-          {
             name: 'Sunset: ',
             value: city.sys.sunset,
             inline: true,
-          },
+          }
         );
   
       message.channel.send(embed);
