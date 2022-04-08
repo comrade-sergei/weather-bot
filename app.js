@@ -16,13 +16,10 @@ client.on("ready", function(){
 });
 
 const teachAssistAPI = {
-  url: 'https://api.pegasis.site/public/yrdsb_ta/',
+  url: 'https://raw.githubusercontent.com/comrade-sergei/teachassist/main/swagger.json',
   type: 'teachassist',
   id: 100,
 }
-
-const apiURL = `${apiData.url}${apiData.type}/${apiData.id}`;
-console.log(apiURL);
 
 // Function
 client.on("message", (message) =>{
@@ -54,6 +51,8 @@ client.on("message", (message) =>{
 
   if(command == "debug") {
     message.channel.send('debug coming soon');
+    const apiURL = `${apiData.url}${apiData.type}/${apiData.id}`;
+    console.log(apiURL);
     message.channel.send(apiURL);
   }
   
