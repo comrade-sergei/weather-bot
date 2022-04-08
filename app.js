@@ -50,7 +50,7 @@ client.on("message", (message) =>{
   }
 
   if(command == "debug") {
-    message.channel.send('debug coming soon!');
+    message.channel.send('debug coming soon!!');
     const apiURL = `${apiData.url}${apiData.type}/${apiData.id}`;
     console.log(apiURL);
     message.channel.send(apiURL);
