@@ -1,5 +1,6 @@
 // Starter
 const Discord = require('discord.js');
+const Weather = require('weather.js');
 const client = new Discord.Client();
 const prefix = '!';
 
@@ -9,17 +10,11 @@ client.on("ready", function(){
   client.user.setPresence({
     status: 'online',
     activity: {
-      name: "with swagger.json",
-      type: 'PLAYING'
+      name: "to swagger.json",
+      type: 'LISTENING'
     }
   })
 });
-
-const teachAssistAPI = {
-  url: 'https://raw.githubusercontent.com/comrade-sergei/teachassist/main/swagger.json',
-  type: 'teachassist',
-  id: 100,
-}
 
 // Function
 client.on("message", (message) =>{
@@ -57,10 +52,35 @@ client.on("message", (message) =>{
   }
 
   if(command == "getForecast") {
-    if(!args[0]) {
+    if(args.length == 0) {
       return message.channel.send("Please enter a city.");
     } else {
       message.channel.send("City entered: " + args[1]);
+
+      weather.find({search: args.join(" "), degreeType: 'C'}, function (error, result){
+        // 'C' can be changed to 'F' for farneheit results
+        if(error) return message.channel.send(error);
+
+        if(result === undefined || result.length === 0) return message.channel.send('**Invalid** location');
+
+        var current = result[0].current;
+        var location = result[0].location;
+
+        const weatherinfo = new Discord.MessageEmbed()
+        .setDescription(`**${current.skytext}**`)
+        .setAuthor(`Weather forecast for ${current.observationpoint}`)
+        .setThumbnail(current.imageUrl)
+        .setColor(0x111111)
+        .addField('Timezone', `UTC${location.timezone}`, true)
+        .addField('Degree Type', 'Celsius', true)
+        .addField('Temperature', `${current.temperature}°`, true)
+        .addField('Wind', current.winddisplay, true)
+        .addField('Feels like', `${current.feelslike}°`, true)
+        .addField('Humidity', `${current.humidity}%`, true)
+
+
+        message.channel.send(weatherinfo)
+        })        
     }
   }
   
