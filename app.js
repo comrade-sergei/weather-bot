@@ -1,5 +1,6 @@
 // Starter
 const Discord = require('discord.js');
+const axios = require('axios');
 const Weather = require('weather.js');
 const client = new Discord.Client();
 const prefix = '!';
@@ -57,30 +58,62 @@ client.on("message", (message) =>{
     } else {
       message.channel.send("City entered: " + args[1]);
 
-      weather.find({search: args.join(" "), degreeType: 'C'}, function (error, result){
-        // 'C' can be changed to 'F' for farneheit results
-        if(error) return message.channel.send(error);
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${args}&units=imperial&appid=${process.env.weathertoken}`;
 
-        if(result === undefined || result.length === 0) return message.channel.send('**Invalid** location');
-
-        var current = result[0].current;
-        var location = result[0].location;
-
-        const weatherinfo = new Discord.MessageEmbed()
-        .setDescription(`**${current.skytext}**`)
-        .setAuthor(`Weather forecast for ${current.observationpoint}`)
-        .setThumbnail(current.imageUrl)
-        .setColor(0x111111)
-        .addField('Timezone', `UTC${location.timezone}`, true)
-        .addField('Degree Type', 'Celsius', true)
-        .addField('Temperature', `${current.temperature}°`, true)
-        .addField('Wind', current.winddisplay, true)
-        .addField('Feels like', `${current.feelslike}°`, true)
-        .addField('Humidity', `${current.humidity}%`, true)
-
-
-        message.channel.send(weatherinfo)
-        })        
+      let response; let
+        city;
+  
+      try {
+        response = await axios.get(url);
+        city = response.data;
+        console.log(city);
+      } catch (e) {
+        return message.channel.send('Couldn\'t find that city');
+      }
+  
+      const embed = new MessageEmbed()
+        .setTitle(`Weather in: ${city.name}`)
+        .setThumbnail(`http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`)
+        .setDescription(city.weather[0].description)
+        .addFields(
+          {
+            name: 'Current Temperature: ',
+            value: `${city.main.temp} °F`,
+            inline: true,
+          },
+          {
+            name: 'Weather: ',
+            value: city.weather[0].main,
+          },
+          {
+            name: 'Feels like: ',
+            value: `${city.main.feels_like} °F`,
+            inline: true,
+          },
+          {
+            name: 'Highest: ',
+            value: `${city.main.temp_max} °F`,
+            inline: true,
+          },
+          {
+            name: 'Lowest: ',
+            value: `${city.main.temp_min} °F`,
+            inline: true,
+          },
+          {
+            name: 'Sunrise: ',
+            value: city.sys.sunrise,
+            inline: true,
+          },
+          {
+            name: 'Sunrise: ',
+            value: city.sys.sunset,
+            inline: true,
+          },
+        );
+  
+      return message.channel.send(embed);
+      
     }
   }
   
