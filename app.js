@@ -55,6 +55,14 @@ client.on("message", (message) =>{
     console.log(apiURL);
     message.channel.send(apiURL);
   }
+
+  if(command == "getForecast") {
+    if(!args[0]) {
+      return message.channel.send("Please enter a city.");
+    } else {
+      message.channel.send("City entered: " + args[1]);
+    }
+  }
   
 });
 

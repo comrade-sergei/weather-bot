@@ -4,7 +4,8 @@
   "description": "cool",
   "main": "app.js",
   "dependencies": {
-    "discord.js": "^12.5.3",
+    "axios": "^0.26.1",
+    "discord.js": "^13.6.0",
     "dotenv": "^9.0.2"
   },
   "devDependencies": {},
