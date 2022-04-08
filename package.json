@@ -1,9 +1,10 @@
 {
-  "name": "croatia-bot",
+  "name": "teachassist-bot",
   "version": "1.0.0",
-  "description": "hrvatska",
+  "description": "cool",
   "main": "app.js",
   "dependencies": {
+    "axios": "^0.26.1",
     "discord.js": "^12.5.3",
     "dotenv": "^9.0.2"
   },
@@ -13,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/comrade-sergei/croatia-bot.git"
+    "url": "git+https://github.com/comrade-sergei/teachassist-bot.git"
   },
   "keywords": [
     "discord"
@@ -21,7 +22,7 @@
   "author": "sergei",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/comrade-sergei/croatia-bot/issues"
+    "url": "https://github.com/comrade-sergei/teachassist-bot/issues"
   },
-  "homepage": "https://github.com/comrade-sergei/croatia-bot#readme"
+  "homepage": "https://github.com/comrade-sergei/teachassist-bot#readme"
 }

@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const axios = require('axios');
 const client = new Discord.Client();
 const prefix = '!';
 
@@ -29,12 +30,19 @@ client.on("message", (message) =>{
     .setColor('#154fad')
     .setTitle('**How to use the TeachAssist Bot**')
     .setDescription(`
-      Sussus
+
+      !ping
+      !help
+
     `)
     .setTimestamp()
     .setFooter('TeachAssist Bot', 'https://cdn.discordapp.com/attachments/962109342407082067/962114089058992209/unnamed.jpg')
 
     message.channel.send(helpEmbed);
+  }
+
+  if(command == "getMarks") {
+    message.channel.send("test");
   }
 });
 
