@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const axios = require('axios');
 const client = new Discord.Client();
 const prefix = '!';
 
@@ -44,6 +43,7 @@ client.on("message", (message) =>{
   if(command == "getMarks") {
     message.channel.send("test");
   }
+  
 });
 
 client.login(process.env.token);
