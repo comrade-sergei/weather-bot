@@ -16,13 +16,13 @@ client.on("ready", function(){
 });
 
 const teachAssistAPI = {
-  url: 'https://api.pegasis.site/public/yrdsb_ta/getmark_v2',
+  url: 'https://api.pegasis.site/public/yrdsb_ta/',
   type: 'teachassist',
   id: 100,
 }
 
 const apiURL = `${apiData.url}${apiData.type}/${apiData.id}`;
-console.log(apiURL)
+console.log(apiURL);
 
 // Function
 client.on("message", (message) =>{
