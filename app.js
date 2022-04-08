@@ -40,8 +40,8 @@ client.on("message", (message) =>{
     message.channel.send(helpEmbed);
   }
 
-  if(command == "getMarks") {
-    message.channel.send("test");
+  if(command == "debug") {
+    message.channel.send('debug coming soon');
   }
   
 });
