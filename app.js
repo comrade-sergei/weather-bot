@@ -1,6 +1,6 @@
 // Starter
 const Discord = require('discord.js');
-//const weather = require('weather-js');
+const weather = require('weather-js');
 const client = new Discord.Client();
 const prefix = '!';
 
@@ -48,7 +48,7 @@ client.on("message", (message) =>{
     message.channel.send('debug coming soon!!');
   }
 
-/*  if(command == "getForecast") {
+  if(command == "getForecast") {
       weather.find({search: args.join(" "), degreeType: `C`}, function (error, result) {
         if(error) return message.channel.send(error);
         if(!args[0]) return message.channel.send('Please specify a location!')
@@ -71,7 +71,7 @@ client.on("message", (message) =>{
         message.channel.send(embed)
       })
     }
-    */
+    
 });
 
 // Load
