@@ -58,7 +58,7 @@ client.on("messageCreate", (message) => {
       var stringified = JSON.stringify(result, null, 2);
       var parsed = JSON.parse(stringified);
       if (parsed[0] != undefined){
-      message.reply("The temperature in " + args.at(0) + " is " + parsed[0].current.temperature + "°C"); // improve looks.
+      message.reply("The temperature in " + args.at(0) + " " + "is " + parsed[0].current.temperature + "°C"); // improve looks.
     }
     
     else message.reply("Enter a valid city with no spaces");
