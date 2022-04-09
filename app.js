@@ -50,9 +50,6 @@ client.on("message", (message) =>{
 
   if(command == "getForecast") {
       weather.find({search: args.join(" "), degreeType: `C`}, function (error, result) {
-        if(error) return message.channel.send(error);
-        if(!args[0]) return message.channel.send('Please specify a location!')
-
         var current = result[0].current;
         var location = result[0].location;
 
