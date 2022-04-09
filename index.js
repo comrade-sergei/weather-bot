@@ -65,6 +65,7 @@ client.on("messageCreate", (message) => {
   if(message.content == prefix + "debug") {
     message.reply("coming soon"); // replace with actual debugging at some point.
   }
+  
 }); 
 
 // Start
