@@ -1,4 +1,4 @@
-# TeachAssist Bot
+# Weather Bot
 
 ----------
 [**Join the Development Discord**](https://discord.gg/uQXmHjCH28)
@@ -8,6 +8,11 @@
 **Current Version:** 1
 
 **Compatible with:** Discord
+
+**Dependencies:**
+- Node.js
+- Discord.js
+- Weather-js
 
 **Supported Languages:**
 - English
