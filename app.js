@@ -1,7 +1,6 @@
 // Starter
 const Discord = require('discord.js');
 const axios = require('axios');
-const weather = require('weather.js');
 const client = new Discord.Client();
 const prefix = '!';
 
