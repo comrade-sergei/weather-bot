@@ -1,6 +1,9 @@
 // Starter Variables
 const { Client, Intents } = require('discord.js');
 const weather = require('weather-js');
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '.env') })
+const token = process.env.token
 
 const client = new Client({ 
   intents: [
@@ -48,4 +51,4 @@ client.on("messageCreate", (message) => {
 }); 
 
 // Load
-client.login('OTYyMTA5NTA4NTg5NjEzMTA2.YlCwTQ.4AYUJUtybnpXSXWHVTNa916IAtU');
+client.login(token);
