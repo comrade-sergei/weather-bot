@@ -13,14 +13,14 @@ https://github.com/comrade-sergei/weather-bot
 */
 
 // Modular Variables
-const { Client, Intents } = require('discord.js');
+const {Client, Intents, Discord, MessageEmbed} = require('discord.js');
 const weather = require('weather-js');
 const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '.env') })
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
 // Variables
 const prefix = '!';
-const token = process.env.token
+const token = process.env.token;
 
 // Intialization
 const client = new Client({ 
@@ -36,34 +36,44 @@ client.on("ready", function(){
 
 client.on("messageCreate", (message) => {
 
-  //if (!message.content.startsWith(prefix) || message.author.bot) return; // put this into use.
+  if (!message.content.startsWith(prefix) || message.author.bot) return; // put this into use.
 
   const args = message.content.slice(1).trim().split(' ');
   const command = args.shift().toLowerCase(); // put into use.
 
-  if(message.content == prefix + "ping") {
+  if(command == "ping") {
     message.reply(`${Date.now() - message.createdTimestamp}ms.`); // fix times. currently == - numbers.
   }
 
-  if(message.content == prefix + "help") {
-    message.reply('```!ping```') // make it look better, use embeds.
+  if(command == "help") {
+    message.reply('```!ping, !help, !weather, !dc```') // make it look better, use embeds.
   }
 
-  if(message.content == prefix + "weather" + args[1]) {
-
-    weather.find({search: args[1], degreeType: 'C'}, function(error, result) { // add args support (for multiple places).
+  if(command == 'weather') {
+    if (args.at(0) != null){
+    weather.find({search: args.at(0), degreeType: 'C'}, function(error, result) { // add args support (for multiple places).
+     
       if(error) console.log(error);
      
-     console.log(JSON.stringify(result, null, 2)); // debug.
       var stringified = JSON.stringify(result, null, 2);
       var parsed = JSON.parse(stringified);
-
-      message.reply("The temperature in Toronto is " + parsed[0].current.temperature + "°C"); // improve looks.
+      if (parsed[0] != undefined){
+      message.reply("The temperature in " + args.at(0) + " is " + parsed[0].current.temperature + "°C"); // improve looks.
+    }
+    
+    else message.reply("Enter a valid city with no spaces");
     });
   }
+  else{
+    message.reply("Enter a city");
+  }
+  }
+  
 
-  if(message.content == prefix + "debug") {
-    message.reply("coming soon"); // replace with actual debugging at some point.
+  if(command == "dc") {
+    message.reply('Disconnected!');
+    client.destroy();
+    process.exit(0);
   }
 
 }); 
