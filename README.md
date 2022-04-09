@@ -13,6 +13,9 @@
 - Node.js
 - Discord.js
 - Weather-js
+- @vitalets/google-translate-api
+- dotenv
+- path
 
 **Supported Languages:**
 - English
@@ -23,3 +26,4 @@
 - Dutch
 - Russian
 - Chinese
+- and more!
