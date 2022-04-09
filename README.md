@@ -1,11 +1,11 @@
 # Weather Bot
 
 ----------
-[**Join the Development Discord**](https://discord.gg/uQXmHjCH28)
+[**Join the Testing Discord**](https://discord.gg/uQXmHjCH28)
 
-**Status:** In Development
+**Status:** In-Development
 
-**Current Version:** 1
+**Current Version:** v2.2
 
 **Compatible with:** Discord
 
@@ -17,3 +17,9 @@
 **Supported Languages:**
 - English
 - French
+- German
+- Italian
+- Bosnian-Croatian-Montenegrin-Serbian
+- Dutch
+- Russian
+- Chinese
