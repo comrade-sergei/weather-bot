@@ -53,49 +53,13 @@ client.on("message", (message) =>{
   }
 
   if(command == "getForecast") {
-    if(args.length == 0) {
-      return message.channel.send("Please enter a city.");
-    } else {
       message.channel.send("City entered: " + args[1]);
 
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${args}&units=metric&appid=${process.env.weathertoken}`;
-
-      try {
-        const response = await axios.get(url);
-        const city = response.data;
-        message.channel.send(city);
-      }
-  
-      const weatherEmbed = new Discord.MessageEmbed()
-        .setTitle(`Weather in: ${city.name}`)
-        .setThumbnail(`http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`)
-        .setDescription(city.weather[0].description)
-        .addFields(
-          {
-            name: 'Current Temperature: ',
-            value: `${city.main.temp} °F`,
-            inline: true,
-          },
-          {
-            name: 'Weather: ',
-            value: city.weather[0].main,
-          },
-          {
-            name: 'Feels like: ',
-            value: `${city.main.feels_like} °F`,
-            inline: true,
-          },
-          {
-            name: 'Sunset: ',
-            value: city.sys.sunset,
-            inline: true,
-          }
-        );
-  
-      message.channel.send(embed);
-
+      const response = await axios.get(url);
+      const city = response.data;
+      message.channel.send(city);
     }
-  }
   
 });
 
