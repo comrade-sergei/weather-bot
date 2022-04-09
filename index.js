@@ -49,12 +49,12 @@ client.on("messageCreate", (message) => {
     message.reply('```!ping```') // make it look better, use embeds.
   }
 
-  if(message.content == prefix + "weather") {
+  if(message.content == prefix + "weather" + args[1]) {
 
-    weather.find({search: 'Toronto, CA', degreeType: 'C'}, function(error, result) { // add args support (for multiple places).
+    weather.find({search: args[1], degreeType: 'C'}, function(error, result) { // add args support (for multiple places).
       if(error) console.log(error);
      
-      //console.log(JSON.stringify(result, null, 2)); // debug.
+     console.log(JSON.stringify(result, null, 2)); // debug.
       var stringified = JSON.stringify(result, null, 2);
       var parsed = JSON.parse(stringified);
 
