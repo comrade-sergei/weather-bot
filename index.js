@@ -1,6 +1,13 @@
 // Starter Variables
 const { Client, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const weather = require('weather-js');
+
+const client = new Client({ 
+  intents: [
+    "GUILDS",
+    "GUILD_MESSAGES"
+  ] 
+});
 
 // Variables
 const prefix = '!';
@@ -10,22 +17,35 @@ client.on("ready", function(){
   console.log(client.user.tag);
 });
 
-client.on("message", (message) =>{
+client.on("messageCreate", (message) => {
 
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  //if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(1).trim().split(' ');
   const command = args.shift().toLowerCase();
 
-  if (command == "ping") {
-    message.channel.send(`${Date.now() - message.createdTimestamp}ms.`);
+  if (message.content == prefix + "ping") {
+    message.reply(`${Date.now() - message.createdTimestamp}ms.`);
   }
 
-  if (command == "help") {
-    message.channel.send('```!ping```')
+  if (message.content == prefix + "help") {
+    message.reply('```!ping```')
+  }
+
+  if (message.content == prefix + "weather") {
+
+    weather.find({search: 'Toronto, CA', degreeType: 'C'}, function(err, result) {
+      if(err) console.log(err);
+     
+      //console.log(JSON.stringify(result, null, 2));
+      var stringified = JSON.stringify(result, null, 2);
+      var parsed = JSON.parse(stringified);
+
+      message.reply("The temperature in Toronto is " + parsed[0].current.temperature + "°C");
+    });
+
   }
 }); 
-
 
 // Load
 client.login('OTYyMTA5NTA4NTg5NjEzMTA2.YlCwTQ.4AYUJUtybnpXSXWHVTNa916IAtU');
