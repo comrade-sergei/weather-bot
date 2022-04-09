@@ -40,13 +40,13 @@ client.on("ready", function(){
 // Function
 client.on("messageCreate", (message) => {
 
-  if (!message.content.startsWith(prefix) || message.author.bot) return; // put this into use.
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(1).trim().split(' ');
   const command = args.shift().toLowerCase();
 
   if(command == "help") {
-    message.reply('```!help, !temp, !dc, !translate, !set, !observationtime, !windspeed, !skytext, !date, !humidity, !amongus, !rap```') // make it look better, use embeds.
+    message.reply('```!help, !temp, !dc, !translate, !set, !observationtime, !windspeed, !skytext, !date, !humidity, !amongus, !rap```')
   }
 
   if(command == "amongus") {
@@ -59,7 +59,7 @@ client.on("messageCreate", (message) => {
 
   if(command == 'temp' || command == 'temperature') {
     if (args.at(0) != null) {
-    weather.find({search: args.at(0), degreeType: 'C'}, function(error, result) { // add args support (for multiple places).
+    weather.find({search: args.at(0), degreeType: 'C'}, function(error, result) {
      
       if(error) console.log(error);
      
@@ -81,7 +81,7 @@ client.on("messageCreate", (message) => {
 
 if(command == 'windspeed') {
   if (args.at(0) != null) {
-    weather.find({search: args.at(0), degreeType: 'C'}, function(error, result) { // add args support (for multiple places).
+    weather.find({search: args.at(0), degreeType: 'C'}, function(error, result) {
     
       if(error) console.log(error);
     
@@ -102,7 +102,7 @@ if(command == 'windspeed') {
 
 if(command == 'observationtime') {
   if (args.at(0) != null) {
-    weather.find({search: args.at(0), degreeType: 'C'}, function(error, result) { // add args support (for multiple places).
+    weather.find({search: args.at(0), degreeType: 'C'}, function(error, result) {
     
       if(error) console.log(error);
     
@@ -123,7 +123,7 @@ if(command == 'observationtime') {
 
 if(command == 'skytext') {
   if (args.at(0) != null) {
-    weather.find({search: args.at(0), degreeType: 'C'}, function(error, result) { // add args support (for multiple places).
+    weather.find({search: args.at(0), degreeType: 'C'}, function(error, result) {
     
       if(error) console.log(error);
     
