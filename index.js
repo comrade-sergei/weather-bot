@@ -46,7 +46,7 @@ client.on("messageCreate", (message) => {
   const command = args.shift().toLowerCase();
 
   if(command == "help") {
-    message.reply('```!help, !temp, !dc, !translate, !set, !observationtime, !windspeed, !skytext, !date, !humidity, !amongus, !rap```')
+    message.reply('```!help, !temp, !dc, !translate, !set, !observationtime, !windspeed, !skytext, !date, !humidity, !amongus, !rap, !convert```')
   }
 
   if(command == "amongus") {
@@ -202,7 +202,18 @@ if(command == 'humidity') {
         message.reply(response.text);
       });
     } else {
-      message.reply("Please enter something to translate. ``!convert [string] [target language]``.");
+      message.reply("Please enter something to translate. ``!translate [string] [target language]``.");
+      message.channel.send("For reference: https://cloud.google.com/translate/docs/languages");
+    }
+  }
+
+  if(command == "convert") {
+    if(args.at(0) != null) {
+      translate(args.at(0), {from: args.at(1), to: args.at(2)}).then(response => {
+        message.reply(response.text);
+      });
+    } else {
+      message.reply("Please enter something to translate. ``!convert [string] [origin language] [target language]``.");
       message.channel.send("For reference: https://cloud.google.com/translate/docs/languages");
     }
   }
