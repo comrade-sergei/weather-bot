@@ -53,14 +53,13 @@ client.on("message", (message) =>{
   }
 
   if(command == "getForecast") {
-      message.channel.send("City entered: " + args[1]);
+      message.channel.send("City entered");
 
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${args}&units=metric&appid=${process.env.weathertoken}`;
       const response = await axios.get(url);
       const city = response.data;
       message.channel.send(city);
     }
-  
 });
 
 // Load
