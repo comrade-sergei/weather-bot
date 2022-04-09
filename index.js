@@ -51,8 +51,8 @@ client.on("messageCreate", (message) => {
 
   if(message.content == prefix + "weather") {
 
-    weather.find({search: 'Toronto, CA', degreeType: 'C'}, function(err, result) { // add args support (for multiple places).
-      if(err) console.log(err);
+    weather.find({search: 'Toronto, CA', degreeType: 'C'}, function(error, result) { // add args support (for multiple places).
+      if(error) console.log(error);
      
       //console.log(JSON.stringify(result, null, 2)); // debug.
       var stringified = JSON.stringify(result, null, 2);
@@ -65,7 +65,7 @@ client.on("messageCreate", (message) => {
   if(message.content == prefix + "debug") {
     message.reply("coming soon"); // replace with actual debugging at some point.
   }
-  
+
 }); 
 
 // Start
